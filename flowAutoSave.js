@@ -1,3 +1,10 @@
+if(window.autoSaveIntervalID){
+  clearInterval(window.autoSaveIntervalID);
+  window.autoSaveInterval = null;
+  console.log("Auto save is off");
+  return; 
+}
+
 let LOG_ENABLED = true;
 
 const findElementInShadowsAndIframe = (root, selector) => {
@@ -27,7 +34,7 @@ const findElementInShadowsAndIframe = (root, selector) => {
   return null;
 };
 
-setInterval(() => {
+window.autoSaveIntervalID=setInterval(() => {
   const saveButton = findElementInShadowsAndIframe(
     document,
     "#editor_save_btn"
@@ -39,6 +46,7 @@ setInterval(() => {
       found: !!saveButton,
       disabled: saveButton?.disabled,
     });
+    console.log("window.autoSaveIntervalID:", window.autoSaveIntervalID);
   }
 
   if (saveButton && !saveButton.disabled) {
