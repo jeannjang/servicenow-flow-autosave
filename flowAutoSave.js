@@ -1,6 +1,6 @@
 if(window.autoSaveIntervalID){
   clearInterval(window.autoSaveIntervalID);
-  window.autoSaveInterval = null;
+  window.autoSaveIntervalID = null;
   console.log("Auto save is off");
   return; 
 }
